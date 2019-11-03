@@ -92,44 +92,52 @@ namespace RoadStatus
 			ServicePointManager.DefaultConnectionLimit = 9999;
 			ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12 | SecurityProtocolType.Ssl3;
 			//Get Method
-			using (var client = new HttpClient())
+			try
 			{
-				client.BaseAddress = new Uri(apiUri);
-				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-					HttpResponseMessage response = client.GetAsync(apiUri).Result;
-				strJson = response.Content.ReadAsStringAsync().Result;
-					var token = JToken.Parse(strJson);
-				if (token.Type == JTokenType.Array)
+				using (var client = new HttpClient())
 				{
-					JArray rss = JArray.Parse(strJson.Replace('"', '\''));
-					dynamic data = JObject.Parse(rss[0].ToString());
-					displayName = (string)data["displayName"];
-					statusSeverity = (string)data["statusSeverity"];
-					statusSeverityDescription = (string)data["statusSeverityDescription"];
+					client.BaseAddress = new Uri(apiUri);
+					client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+					HttpResponseMessage response = client.GetAsync(apiUri).Result;
+					strJson = response.Content.ReadAsStringAsync().Result;
+					var token = JToken.Parse(strJson);
+					if (token.Type == JTokenType.Array)
+					{
+						JArray rss = JArray.Parse(strJson.Replace('"', '\''));
+						dynamic data = JObject.Parse(rss[0].ToString());
+						displayName = (string)data["displayName"];
+						statusSeverity = (string)data["statusSeverity"];
+						statusSeverityDescription = (string)data["statusSeverityDescription"];
 						Console.WriteLine();
 						Console.WriteLine("The status of the {0} is as follows:\n", displayName);
 						Console.WriteLine("		Road Status is {0}", statusSeverity);
 						Console.WriteLine("		Road Status Description is {0}", statusSeverityDescription);
 						Console.ReadLine();
 						Environment.Exit(0);
-				}
-				else if (token.Type == JTokenType.Object)
-				{
-					JObject rss = JObject.Parse(strJson.Replace('"', '\''));
-					httpStatusCode = (string)rss["httpStatusCode"];
-					if (Convert.ToInt32(httpStatusCode) == 404)
+					}
+					else if (token.Type == JTokenType.Object)
 					{
-						Console.WriteLine();
-						Console.WriteLine("{0} is not a valid road\n", roadName);
+						JObject rss = JObject.Parse(strJson.Replace('"', '\''));
+						httpStatusCode = (string)rss["httpStatusCode"];
+						if (Convert.ToInt32(httpStatusCode) == 404)
+						{
+							Console.WriteLine();
+							Console.WriteLine("{0} is not a valid road\n", roadName);
 							result = "{0} is not a valid road" + roadName;
-						Console.ReadLine();
-						Environment.Exit(1);
+							Console.ReadLine();
+							Environment.Exit(1);
+						}
+					}
+					else
+					{
+						Console.WriteLine($"Neither, it's actually a {token.Type}");
 					}
 				}
-				else
-				{
-					Console.WriteLine($"Neither, it's actually a {token.Type}");
-				}
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine("Error : " + ex);
+				return result = "Error : " + ex;
 			}
 			#endregion
 			return result;
