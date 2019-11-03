@@ -4,6 +4,7 @@ How to build the code
 1. Download TFL-master.zip or clone.
 2. Unzip the file.
 3. Click on RoadStatus.sln.
+4. Click on Build>Rebuild Solution.
 4. Click on Start to start the console app.
 
 How to run the output
