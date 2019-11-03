@@ -1,0 +1,8 @@
+C:\Dev\TFL\RoadStatus\RoadStatus\bin\Debug\RoadStatus.exe.config
+C:\Dev\TFL\RoadStatus\RoadStatus\bin\Debug\RoadStatus.exe
+C:\Dev\TFL\RoadStatus\RoadStatus\bin\Debug\RoadStatus.pdb
+C:\Dev\TFL\RoadStatus\RoadStatus\bin\Debug\Newtonsoft.Json.dll
+C:\Dev\TFL\RoadStatus\RoadStatus\bin\Debug\Newtonsoft.Json.xml
+C:\Dev\TFL\RoadStatus\RoadStatus\obj\Debug\RoadStatus.csprojResolveAssemblyReference.cache
+C:\Dev\TFL\RoadStatus\RoadStatus\obj\Debug\RoadStatus.exe
+C:\Dev\TFL\RoadStatus\RoadStatus\obj\Debug\RoadStatus.pdb
