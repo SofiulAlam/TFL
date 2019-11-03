@@ -103,11 +103,12 @@ namespace RoadStatus
 					displayName = (string)data["displayName"];
 					statusSeverity = (string)data["statusSeverity"];
 					statusSeverityDescription = (string)data["statusSeverityDescription"];
-					Console.WriteLine();
-					Console.WriteLine("The status of the {0} is as follows:\n", displayName);
-					Console.WriteLine("		Road Status is {0}", statusSeverity);
-					Console.WriteLine("		Road Status Description is {0}", statusSeverityDescription);
-					Console.ReadLine();
+						Console.WriteLine();
+						Console.WriteLine("The status of the {0} is as follows:\n", displayName);
+						Console.WriteLine("		Road Status is {0}", statusSeverity);
+						Console.WriteLine("		Road Status Description is {0}", statusSeverityDescription);
+						Console.ReadLine();
+						Environment.Exit(0);
 				}
 				else if (token.Type == JTokenType.Object)
 				{
@@ -119,6 +120,7 @@ namespace RoadStatus
 						Console.WriteLine("{0} is not a valid road\n", roadName);
 							result = "{0} is not a valid road" + roadName;
 						Console.ReadLine();
+						Environment.Exit(1);
 					}
 				}
 				else
