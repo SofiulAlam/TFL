@@ -17,3 +17,5 @@ How to Add Newtonsoft.Json.dll
 2. Click on Manage Nuget Package
 3. Click on Browse
 4. Install Newtonsoft.Json
+
+https://github.com/SofiulAlam/TFL/blob/master/github_1.PNG
