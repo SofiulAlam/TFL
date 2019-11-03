@@ -128,11 +128,8 @@ namespace RoadStatus
 					Console.WriteLine($"Neither, it's actually a {token.Type}");
 				}
 			}
-
 			#endregion
 			return result;
 		}
 	}
-
-
 }
